@@ -75,6 +75,7 @@ apt-get -y install \
 	libgconf2-dev \
 	libgettextpo-dev \
 	libglu1-mesa-dev \
+	libgit2-dev \
 	libgmp-dev \
 	libgomp1 \
 	libgtk-3-dev \
