@@ -7,7 +7,6 @@ apt-get -y update && apt-get -y upgrade
 apt-get -y install tzdata software-properties-common wget gpg lsb-release
 
 # Proxy setup for APT (auth with user/password does not work with add-apt-repository)
-
 _proxy_detected () {
     if [[ ${http_proxy:-"unset"} != "unset" || ${https_proxy:-"unset"} != "unset" ]]; then
       return 0 
