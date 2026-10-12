@@ -21,7 +21,7 @@
   commit: 5ec8c1921670588bd8bab4fa664b6f72ecb84016
 - name: gtkwave
   repo: https://github.com/gtkwave/gtkwave.git
-  commit: 132a0863a5ce97c275fd35f1c88cd7cc4f2b4ca9
+  commit: f6d60e01df5bf39d2c9ba46a7b9979cf8ff891cb
 - name: icestorm
   repo: https://github.com/YosysHQ/icestorm.git
   commit: b77a2d5b84d88cdab96b218c21330bd609af4546
@@ -30,13 +30,13 @@
   commit: 037a1b97086ef8425bdd9379e38f6aada4f327e7
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: b255106384fced05b3544f693f77915e33e7145e
+  commit: be5984bb993642c116a07cef7fb9dc1420372c62
 - name: kactus2
   repo: https://github.com/kactus2/kactus2dev.git
   commit: v3.14.2
 - name: kepler-formal
   repo: https://github.com/keplertech/kepler-formal.git
-  commit: 91e00fda45648918b51c3cc7bcf967b3541fbbb8
+  commit: 0e3019d4fa5d365771ba783a8c4f34f58e2e19f6
 - name: klayout
   repo: https://github.com/KLayout/klayout.git
   commit: v0.30.12
@@ -72,7 +72,7 @@
   commit: 974294ba7d812ef5a46a4760593057aee7ce6866
 - name: openroad
   repo: https://github.com/The-OpenROAD-Project/OpenROAD.git
-  commit: 8a05d8549b295e8bb84be52d1e3b3d323e539375
+  commit: a3bf6124782f205ba5fa9e2e402dae8b665fc4fc
 - name: openroad-librelane
   repo: https://github.com/The-OpenROAD-Project/OpenROAD.git
   commit: dcf36133a369abc8f3c5e5738cd4d82e4903c0e0
@@ -115,7 +115,7 @@
   commit: 9c61d29846d8521d9487a57739330f9682d5b542
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 9ad44fd1f82d5f7982ce0d0cf117fdc56e442806
+  commit: abba1ca035af6286927343887e6f64660805cf94
 - name: slang-yosys-plugin
   repo: https://github.com/povik/yosys-slang.git
   commit: ddb91c219c00260a3675bb321e6f693ea79d915e
@@ -124,7 +124,7 @@
   commit: 668b9a6a1b474f7b5181b5caed915e8d0a1505bd
 - name: spike
   repo: https://github.com/riscv-software-src/riscv-isa-sim.git
-  commit: d6cfe9efdb531a9dbb2206367deffdf39452434e
+  commit: 17e8a69fb75546dea445cfc0fb78769d2510f339
 - name: surelog
   repo: https://github.com/chipsalliance/Surelog.git
   commit: v1.87
@@ -154,7 +154,7 @@
   commit: 9051f4804fe8f6386272085f604c9238e5ac0b05
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: efc04f496485f112fd97b69ce907131bc63e4dab
+  commit: f4871a7b1ef79c9c4419876f65cde22d497ff53e
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.10.0
