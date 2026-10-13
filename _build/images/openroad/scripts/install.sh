@@ -23,8 +23,14 @@ BAZEL_ARGS=("--jobs=$(nproc)" "--config=release" "--//:platform=gui")
 # __isoc23_strtol@GLIBC_2.38) than the toolchain's glibc 2.28 link stubs
 # provide, so lld's default --no-allow-shlib-undefined fails the link. The
 # system glibc resolves them at runtime, so let the link through.
+# Qt's qsimd.cpp calls getenv() without <stdlib.h>. On x86 <immintrin.h> pulls
+# it in, on aarch64 nothing does since libc++ 23 (hermetic-llvm 0.8.24,
+# OpenROAD #11699). Force the include for the target and exec (moc) builds
+# until qt_bazel_prebuilts adds it, as c3319f9e did for qxcbatom.cpp.
 if [ "$(arch)" == "aarch64" ]; then
     BAZEL_ARGS+=("--linkopt=-Wl,--allow-shlib-undefined")
+    BAZEL_ARGS+=("--per_file_copt=qsimd\.cpp@-include,stdlib.h")
+    BAZEL_ARGS+=("--host_per_file_copt=qsimd\.cpp@-include,stdlib.h")
 fi
 bazelisk build "${BAZEL_ARGS[@]}" //:openroad //src/sta:opensta
 bazelisk run "${BAZEL_ARGS[@]}" //:install -- "${TOOLS}/${OPENROAD_NAME}"
