@@ -17,8 +17,9 @@
 # swsoa), while ihp-sg13g2 had no MOSCAP in VACASK at all.
 # So this loads every section of every converted corner file of both PDKs and
 # the include set of the xschem "Add VACASK models symbol" menu entry, then
-# checks two devices against ngspice: the Schottky diode of ihp-sg13g2 in
-# dio_tt and dio_tt_stat, and the n-type MOS capacitor of both PDKs.
+# checks devices against ngspice: the Schottky diode of ihp-sg13g2 in dio_tt
+# and dio_tt_stat, and the n-type MOS capacitor and both MoM capacitors of
+# both PDKs (ihp-sg13g2 shipped cap_cmomi and cap_cmomf without their OSDI).
 
 if [ -z "${RAND}" ]; then
     RAND=$(hexdump -v -e '/1 "%02x"' -n4 < /dev/urandom)
@@ -162,7 +163,49 @@ print("RESULT %.6e" % (np.imag(y) / (2 * np.pi * np.abs(plot["frequency"][0]))))
 EOF
     compare "sg13_moscap_n capacitance in F" moscap.spice moscap.sim
 
-    # 4. The Schottky diode conducts the same forward current in VACASK and
+    # 4. The MoM capacitors have the same capacitance in VACASK and ngspice.
+    # Their Verilog-A has to be compiled and loaded for VACASK, and feed=same
+    # only works if the converted subckt default of feed is a literal.
+    for dev in "cap_cmomi w=5e-6 l=5e-6 mmin=1 mmax=4 feed=same" "cap_cmomf w=5e-6 l=5e-6"; do
+        cat > mom.spice << EOF
+* ${dev%% *} capacitance
+.lib cornerCAP.lib cap_typ
+v1 a 0 dc 0 ac 1
+x1 a 0 $dev
+.control
+ac lin 1 1e6 1e6
+let result = -imag(i(v1)) / (2 * pi * 1e6)
+print result
+.endc
+.end
+EOF
+        cat > mom.sim << EOF
+${dev%% *} capacitance
+
+include "$COMMON"
+include "cornerCAP.lib" section=cap_typ
+
+model v vsource
+v1 (a 0) v dc=0 mag=1
+x1 (a 0) $dev
+
+control
+  analysis ac1 ac from=1e6 to=1e6 mode="lin" points=1
+  postprocess(PYTHON, "check.py")
+endc
+
+embed "check.py" <<<FILE
+import numpy as np
+from vacask.rawfile import rawread
+plot = rawread("ac1.raw").get()
+y = -plot["v1:flow(br)"][0]
+print("RESULT %.6e" % (np.imag(y) / (2 * np.pi * np.abs(plot["frequency"][0]))))
+>>>FILE
+EOF
+        compare "${dev%% *} capacitance in F" mom.spice mom.sim
+    done
+
+    # 5. The Schottky diode conducts the same forward current in VACASK and
     # ngspice. VACASK evaluates gauss() at its nominal value outside a Monte
     # Carlo run, so dio_tt_stat has to match dio_tt as well. SG13G2 only, CMOS5L
     # has no Schottky diode.

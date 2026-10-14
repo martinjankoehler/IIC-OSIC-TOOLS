@@ -282,10 +282,14 @@ fi
 # (cornerMOSCAP.lib). The list is reconciled with the PDK before the converter
 # runs, and every model file that sets SWSOA globally gets the patch upstream
 # only gives the MOS transistor files (shared with install_ihp_cmos5l.sh).
+# Verilog-A models the PDK ships but the converter does not compile (the MoM
+# capacitors cap_cmomi and cap_cmomf) are added as well.
 echo "[INFO] Checking the VACASK converter against the installed PDK."
 python3 "$PDK_SCRIPT_DIR/fix_sg13g2_vacask_converter.py" \
 	"/tmp/${VACASK_NAME}/python/src/vacask/sg13g2tovc.py" "$PDK_ROOT/$PDK"
 python3 "$PDK_SCRIPT_DIR/fix_vacask_swsoa.py" \
+	"/tmp/${VACASK_NAME}/python/src/vacask/sg13g2tovc.py" "$PDK_ROOT/$PDK"
+python3 "$PDK_SCRIPT_DIR/fix_sg13g2_vacask_va.py" \
 	"/tmp/${VACASK_NAME}/python/src/vacask/sg13g2tovc.py" "$PDK_ROOT/$PDK"
 
 OPENVAF_DIR=${TOOLS}/openvaf/bin PYTHONPATH=/tmp/${VACASK_NAME}/python/src \
