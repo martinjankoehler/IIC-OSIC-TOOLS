@@ -227,6 +227,9 @@ if [ -d "$PDK_ROOT/gf180mcuD" ]; then
 	#  - it reads efuse.gds from /home/$USER/.klayout/pymacros/cells/efuse,
 	#    where nothing ever installs it -- the GDS ships next to the module.
 	# See patches/gf180mcu-efuse.patch for the full change.
+	# Not reported upstream yet. Drop this once
+	# fossi-foundation/globalfoundries-pdk-libs-gf180mcu_fd_pr fixes it and
+	# open_pdks ships that revision.
 	(
 		cd "$PDK_ROOT/gf180mcuD/libs.tech/klayout/tech/pymacros" || exit 1
 		git apply /images/open_pdks/patches/gf180mcu-efuse.patch

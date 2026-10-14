@@ -107,11 +107,8 @@ echo "[INFO] Fixing the KLayout GUI DRC/LVS run directory."
 python3 "$PDK_SCRIPT_DIR/fix_klayout_run_dir.py" "$PDK_ROOT/$PDK/libs.tech/klayout/tech/macros"
 
 # The IHP PDK renamed the IO netlist to libs.ref/sg13g2_io/spice/sg13g2_io.spice,
-# but several consumers still expect the old name sg13g2_io.spi:
-#   - libs.tech/librelane/config.tcl (PAD_SPICE_MODELS)
-#   - libs.tech/xschem/sg13g2_tests/sg13g2_IOPad_tb.sch
-#   - sg13g2tovc.py (VACASK PDK preparation below)
-# Provide the expected name via a symlink until the PDK is consistent again.
+# but libs.tech/xschem/sg13g2_tests/sg13g2_IOPad_tb.sch still includes the old
+# name sg13g2_io.spi. Provide it via a symlink until the PDK is consistent again.
 IO_SPICE_DIR="$PDK_ROOT/$PDK/libs.ref/sg13g2_io/spice"
 if [ ! -e "$IO_SPICE_DIR/sg13g2_io.spi" ] && [ -e "$IO_SPICE_DIR/sg13g2_io.spice" ]; then
 	echo "[INFO] Adding sg13g2_io.spi -> sg13g2_io.spice compatibility symlink."
