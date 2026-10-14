@@ -203,7 +203,7 @@ RUN bash /headless/scripts/install_eda.sh && \
     chmod -R 755 /foss/tools/sak
     
 # Metadata labels
-LABEL org.opencontainers.image.authors="Harald Pretl <harald.pretl@jku.at>; Georg Zachl <georg.zachl@jku.at>" \
+LABEL org.opencontainers.image.authors="Harald Pretl <harald.pretl@jku.at>; Georg Zachl <georg.zachl@jku.at>; Simon Dorrer <simon.dorrer@jku.at>" \
       org.opencontainers.image.url="https://github.com/iic-jku/iic-osic-tools" \
       org.opencontainers.image.documentation="https://github.com/iic-jku/IIC-OSIC-TOOLS/blob/main/README.md" \
       org.opencontainers.image.source="https://github.com/iic-jku/IIC-OSIC-TOOLS" \
