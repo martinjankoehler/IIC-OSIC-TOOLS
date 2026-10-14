@@ -30,7 +30,7 @@
   commit: 037a1b97086ef8425bdd9379e38f6aada4f327e7
 - name: iverilog
   repo: https://github.com/steveicarus/iverilog.git
-  commit: bc0248e6a9300fa0cc5d9ecf970f03e47080c11b
+  commit: 15d870a5207b7156571baf3e4e9f241858bccd16
 - name: kactus2
   repo: https://github.com/kactus2/kactus2dev.git
   commit: v3.14.2
@@ -72,13 +72,13 @@
   commit: 974294ba7d812ef5a46a4760593057aee7ce6866
 - name: openroad
   repo: https://github.com/The-OpenROAD-Project/OpenROAD.git
-  commit: 5007b49201487b5093218a67f5b2f7ea457b5258
+  commit: eb14e40b7b9527a642a07548ed1dc39c4c611cb3
 - name: openroad-librelane
   repo: https://github.com/The-OpenROAD-Project/OpenROAD.git
   commit: dcf36133a369abc8f3c5e5738cd4d82e4903c0e0
 - name: openvaf
   repo: https://github.com/arpadbuermen/OpenVAF.git
-  commit: fbd1d4a1a9adba7e8c55cc8d30c7e08cd6f29cb7
+  commit: dd05b5e2f97fcc8256a1dbf7144755a1ad3bf90a
   branch: mb-experimental
 - name: osic-multitool
   repo: https://github.com/iic-jku/osic-multitool.git
@@ -88,7 +88,7 @@
   commit: 17fba2638142baa4dc6e2a0b18cb1cd542017e16
 - name: palace
   repo: https://github.com/awslabs/palace.git
-  commit: 9bd65ed6d5d68615cb688893df1b696f1fb80f2b
+  commit: 1fa13c9d995abd1cc24c98067ddc3485a08d3d7a
 - name: prjtrellis
   repo: https://github.com/YosysHQ/prjtrellis.git
   commit: a31ff7042e712c0e2ad217054116ce2c4995f5c7
@@ -115,7 +115,7 @@
   commit: 9c61d29846d8521d9487a57739330f9682d5b542
 - name: slang
   repo: https://github.com/MikePopoloski/slang.git
-  commit: 596d2a613ceec2613fa4a48725c20a94dcf147be
+  commit: fd809bc29cc39cc2a467aa29773524144e631e97
 - name: slang-yosys-plugin
   repo: https://github.com/povik/yosys-slang.git
   commit: 9dcee13ea3862347e1715dc51f63e9f845cdd222
@@ -139,7 +139,7 @@
   commit: 997b49c20705ca3d99e8c0ebe57d6a7840513bb4
 - name: uv
   repo: https://github.com/astral-sh/uv.git
-  commit: 0.13.0
+  commit: 0.13.1
 - name: vacask
   repo: https://codeberg.org/arpadbuermen/VACASK.git
   commit: fb8cc2055a4f10cff1de8017b554d22ea57ce448
@@ -154,7 +154,7 @@
   commit: 9051f4804fe8f6386272085f604c9238e5ac0b05
 - name: xschem
   repo: https://github.com/StefanSchippers/xschem.git
-  commit: 0fa7b0ed71548c1263b671af94ec5864ea89a409
+  commit: d76e6cc74fdfa5de573a8ba14124ef00c611a9b6
 - name: xyce
   repo: https://github.com/Xyce/Xyce.git
   commit: Release-7.10.0
@@ -163,7 +163,7 @@
   commit: trilinos-release-12-12-1
 - name: yices2
   repo: https://github.com/SRI-CSL/yices2.git
-  commit: 9e5d726aa3261c7960e064250a0da83a6de4011a
+  commit: 9197ff6df655e1d2d982fe74a45a202db183146c
 - name: yosys
   repo: https://github.com/YosysHQ/yosys.git
   commit: v0.70

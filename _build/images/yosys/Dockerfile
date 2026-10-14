@@ -23,6 +23,6 @@ ARG YOSYS_MCY_NAME="yosys-mcy"
 ARG YOSYS_MCY_REPO_COMMIT="v0.70"
 ARG YICES2_NAME="yices2"
 ARG YICES2_REPO_URL="https://github.com/SRI-CSL/yices2.git"
-ARG YICES2_REPO_COMMIT="9e5d726aa3261c7960e064250a0da83a6de4011a"
+ARG YICES2_REPO_COMMIT="9197ff6df655e1d2d982fe74a45a202db183146c"
 RUN --mount=type=bind,source=images/yosys,target=/images/yosys \
     bash /images/yosys/scripts/install.sh
