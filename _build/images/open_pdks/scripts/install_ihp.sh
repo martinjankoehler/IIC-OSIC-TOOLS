@@ -249,23 +249,6 @@ bash "$PDK_SCRIPT_DIR/install_ez130.sh"
 # gzip Liberty (.lib) files
 bash "$PDK_SCRIPT_DIR/gzip_liberty.sh" "$PDK_ROOT/$PDK"
 
-# sg13g2_svaricaphv_mod_mismatch.lib writes one model parameter as "+ stuac 40",
-# without the "=". IHP fixed that typo in sg13g2_svaricaphv_mod.lib
-# (IHP-Open-PDK cf1083b5, #612) but not in its mismatch twin, and VACASK's
-# converter only patches the former. It turns the line into "stuac=1 40=1",
-# which VACASK rejects with a syntax error, so every mos_*_mismatch section of
-# the converted cornerMOShv.lib fails to load. Fix it the way upstream did
-# (reported as https://github.com/IHP-GmbH/IHP-Open-PDK/issues/1255).
-# CMOS5L symlinks this file into SG13G2, so this covers both PDKs.
-echo "[INFO] Fixing the stuac parameter of the HV varicap mismatch model."
-SVARICAP_MISMATCH="$PDK_ROOT/$PDK/libs.tech/ngspice/models/sg13g2_svaricaphv_mod_mismatch.lib"
-if grep -q '^+ *stuac \+40 *$' "$SVARICAP_MISMATCH"; then
-    sed -i 's/^\(+ *stuac\) \+40 *$/\1 = 40/' "$SVARICAP_MISMATCH"
-    echo "[INFO] Fixed the stuac parameter in $SVARICAP_MISMATCH"
-else
-    echo "[WARN] stuac not patched in $SVARICAP_MISMATCH (already fixed upstream?)"
-fi
-
 # Perform required preparation of IHP PDK for use with VACASK
 echo "[INFO] Preparing IHP PDK for VACASK."
 cd /tmp || exit 1
