@@ -66,6 +66,15 @@ Since the OpenROAD and ORFS version are tightly interlinked with regular interfa
 git checkout $(cat $TOOLS/openroad/ORFS_COMMIT)
 ```
 
+### Yosys Miscompiles or Rejects Some SystemVerilog
+
+Yosys reads SystemVerilog either through its built-in frontend (`read_verilog -sv`) or through the `yosys-slang` plugin (`read_slang`). LibreLane uses the built-in frontend unless `USE_SLANG: true` is set. Synthesis of the OpenBLAU SoC found the following defects of the built-in frontend, all present in the shipped Yosys `0.70`:
+
+- **Silent wrong netlist:** a unary `-`, `~` or `!` in front of a size cast is parsed as part of the cast width, so `-8'(16)` is read as `(-8)'(16)`. With a constant operand the operator is dropped without any message (`-8'(16)` synthesizes to `8'd16` instead of `8'd240`). With a non-constant operand Yosys stops with `ERROR: Static cast with zero or negative size!`. RTL simulation and lint stay clean, only gate-level simulation or an equivalence check catches it. See <https://github.com/YosysHQ/yosys/issues/6249>. Write `-(8'(x))`, `8'(-x)` or `a - 8'(x)` instead, or use `read_slang`.
+- **Rejected constructs:** the built-in frontend stops with a syntax error on unpacked `localparam` arrays (e.g. ROM tables), packed 2-D `localparam`s, a package `import` inside a module, a part-select of a function call (`f(x)[3:0]`), and `return` in a function. Rewriting a design around these ended in an internal assertion in `frontends/ast/simplify.cc`. `read_slang` (LibreLane `USE_SLANG: true`) reads all of them as written, alternatively convert the sources with `sv2v` first.
+
+The `arith_tree` pass dropped the width of a narrower operand folded into a wider sum (<https://github.com/YosysHQ/yosys/pull/6130>). This affected images up to `2026.08` and is fixed since `2026.09` (Yosys `0.69`).
+
 ### Surfer Crashing
 
 As of image `2025.01` Surfer has been added. Surfer used to crash on various platforms due to issues with OpenGL drivers, most notably on macOS in X11 mode (`start_x.sh` with XQuartz), where it aborted with a `GLXBadFBConfig` panic.
