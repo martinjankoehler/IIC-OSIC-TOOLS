@@ -13,12 +13,15 @@ This document summarizes the most important changes of the individual releases o
 * [Fix] `eqy` finds its plugins again when called from `PATH`
 * [Fix] VACASK applies the delay of `absdelay()` in Verilog-A models (e.g. `tline_ideal`), which it treated as zero before, as OpenVAF is now built from branch `mb-experimental`
 * [Fix] VACASK loads every corner section of the IHP PDK models (HV MOS mismatch, MOSCAP, Schottky diode statistics), and the "Add VACASK models symbol" menu entry includes the diode, PNP and MOSCAP corners
+* [Fix] VACASK simulates the MoM capacitors `cap_cmomi` and `cap_cmomf` of `ihp-sg13g2`, whose models were not compiled for it
+* [Fix] `combine_snp` (Palace) de-embeds the ports again with scikit-rf 2.x, and applies each port's inductance to its own port
 * [Fix] the LV standard cells of both IHP PDKs are registered as KLayout libraries again
 * [Fix] PyOPUS evaluations run again under Podman, and `pyopus` follows upstream `main` for the fixes made after `0.12`
 * [Fix] ngspice uses 8 threads (the ngspice default) with `sky130A` too, as it already did with the other PDKs, instead of 4
 * [Build] OpenROAD is built with Bazel instead of the deprecated CMake build
 * [Build] new regression tests 36 (VACASK with the IHP PDKs), 37 (VACASK `absdelay`), 38 (KLayout standard-cell libraries of the IHP PDKs) and 39 (PyOPUS with ngspice)
 * [Docs] `AGENTS.md` with the repository conventions for coding agents
+* [Docs] `KNOWN_ISSUES.md` lists SystemVerilog constructs that Yosys silently mis-synthesizes or rejects, with workarounds
 
 ## 2026.09
 
