@@ -18,10 +18,12 @@ This document summarizes the most important changes of the individual releases o
 * [Fix] the LV standard cells of both IHP PDKs are registered as KLayout libraries again
 * [Fix] PyOPUS evaluations run again under Podman, and `pyopus` follows upstream `main` for the fixes made after `0.12`
 * [Fix] ngspice uses 8 threads (the ngspice default) with `sky130A` too, as it already did with the other PDKs, instead of 4
+* [Fix] `sak-open.py` sizes its extension columns to the widest label, so long labels such as `.gds.gz (5)` are no longer cut off
 * [Build] OpenROAD is built with Bazel instead of the deprecated CMake build
 * [Build] new regression tests 36 (VACASK with the IHP PDKs), 37 (VACASK `absdelay`), 38 (KLayout standard-cell libraries of the IHP PDKs) and 39 (PyOPUS with ngspice)
 * [Docs] `AGENTS.md` with the repository conventions for coding agents
 * [Docs] `KNOWN_ISSUES.md` lists SystemVerilog constructs that Yosys silently mis-synthesizes or rejects, with workarounds
+* [Docs] Simon Dorrer joins Harald Pretl and Georg Zachl as author in `CITATION.cff` and the image metadata
 
 ## 2026.09
 
