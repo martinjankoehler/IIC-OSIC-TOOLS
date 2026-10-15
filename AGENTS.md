@@ -100,6 +100,7 @@ IIC_TEST_NO_PULL=1 ./run_integration_tests.sh <registry>/iic-osic-tools:<tag>   
 ## Conventions
 
 - Work lands on `next_release`, and `main` receives it at the monthly release (tags `YYYY.MM`).
+- The nightly workflow (`.github/workflows/nightly.yaml`, section "Nightly build" of `_build/README.md`) force-resets branch `nightly` from `next_release` every night. Never commit to `nightly`.
 - Scripts and Dockerfiles start with the SPDX block used throughout the repo (`SPDX-FileCopyrightText`, `SPDX-License-Identifier: Apache-2.0`). Copy it from a neighboring file. Markdown files carry none.
 - Build and install scripts use `set -e`. Messages start with `[INFO]`, `[WARNING]` or `[ERROR]`.
 - The start scripts share most of their logic. A fix in one usually belongs in all four `.sh` scripts, and in the `.bat` twins where Windows behaves the same (e.g. `33a07842`). `DRY_RUN=1` prints their container commands instead of running them. Do not run the start or build scripts as root (README section 4).
