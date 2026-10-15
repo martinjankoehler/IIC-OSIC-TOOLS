@@ -64,6 +64,7 @@
 - name: open_pdks
   repo: https://github.com/RTimothyEdwards/open_pdks.git
   commit: 1689ac3f2dc763876eaf967227c7dfe831b031ae
+  hold: sky130A and gf180mcuD are installed through ciel, bump together with the PDK versions LibreLane expects
 - name: opencdc
   repo: https://github.com/Ayoubbelguellaoui/CDC.git
   commit: 6c6bd44bf2d137e108437bb5a9729c8fd5350886
@@ -76,6 +77,7 @@
 - name: openroad-librelane
   repo: https://github.com/The-OpenROAD-Project/OpenROAD.git
   commit: dcf36133a369abc8f3c5e5738cd4d82e4903c0e0
+  hold: OpenROAD revision that the pinned LibreLane release is tested against, bump together with librelane
 - name: openvaf
   repo: https://github.com/arpadbuermen/OpenVAF.git
   commit: dd05b5e2f97fcc8256a1dbf7144755a1ad3bf90a
@@ -161,6 +163,7 @@
 - name: xyce-trilinos
   repo: https://github.com/trilinos/Trilinos.git
   commit: trilinos-release-12-12-1
+  hold: Xyce builds against the Trilinos 12.12 series
 - name: yices2
   repo: https://github.com/SRI-CSL/yices2.git
   commit: 9197ff6df655e1d2d982fe74a45a202db183146c
