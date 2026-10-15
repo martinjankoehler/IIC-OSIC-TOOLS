@@ -57,6 +57,7 @@ pip3 install $PIP_FLAGS --ignore-installed \
 # cace is held at 2.11.0 and ciel at 2.x: every librelane release (up to
 # 3.0.14 / 3.1.0.dev3) requires ciel<3, while cace>=2.12.0 requires ciel>=3.0.0.
 # Bump cace (and ciel) only once librelane accepts ciel 3.
+# version-hold: cace ciel
 pip3 install $PIP_FLAGS \
 	"amaranth==0.5.10" \
 	cace==2.11.0 \
