@@ -42,10 +42,10 @@ host_selinux_enabled() {
 	fi
 }
 
-# Watch a detached container for $1 seconds (default 5) and dump its log if it
+# Watch a detached container for $1 seconds (default 2) and dump its log if it
 # dies, which would otherwise pass unnoticed. Returns 1 if it stopped.
 check_container_alive() {
-	local timeout=${1:-5}
+	local timeout=${1:-2}
 	local i
 	if [ -n "${ECHO_IF_DRY_RUN}" ] || [ -n "${IIC_OSIC_TOOLS_NO_STARTUP_CHECK}" ]; then
 		return 0

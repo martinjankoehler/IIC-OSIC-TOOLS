@@ -396,6 +396,10 @@ For Linux, the local X11 server is accessed through a Unix socket. There are mul
 - `DISP` has the same function as macOS and Windows. It is copied to the container's `DISPLAY` variable. If it is not set, the value of `DISPLAY` from the host is copied.
 - `XAUTH` defines the file that holds the cookies for authentication through the socket. If it is unset, the host's `XAUTHORITY` contents are used. If those are unset too, it will use `$HOME/.Xauthority`.
 
+When the display is SSH X11 forwarding (`ssh -X`, so `DISPLAY=localhost:N`), sshd offers it only on TCP port 6000+N of the host loopback and creates no socket in `/tmp/.X11-unix`. The script then starts the container with `--net=host` so it can reach that port. A network option already present in `DOCKER_EXTRA_PARAMS` is kept.
+
+Docker installed as a snap (offered by the Ubuntu Server installer) runs its daemon with a private `/tmp`, so it cannot see the X11 sockets or the cookie file under the host's `/tmp`. The script detects this and writes the cookie file to `$HOME/eda` instead, which makes SSH X11 forwarding work. A local display still needs the socket in `/tmp`, so with the snap only SSH forwarding works. Install Docker CE from Docker's apt repository instead (e.g. with `install.sh`).
+
 The defaults for these variables are tested on native X11 servers, X2Go sessions, and Wayland. The script copies and modifies the cookie from the`.Xauthority` file into a separate, temporary file. This file is then mounted into the container.
 
 #### 4.3.4 Installing X11-Server
