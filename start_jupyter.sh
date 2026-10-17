@@ -92,6 +92,14 @@ selinux_failure_hint() {
 		echo "[HINT] Without it the container cannot access the host X11/Wayland sockets and ${DESIGNS}, see README section 5.1.1."
 	fi
 }
+# Rootless Podman cannot remap file ownership on the fly, so the first container
+# with --userns=keep-id per image makes a chown'ed copy of every layer.
+keep_id_copy_notice() {
+	echo "${DOCKER_EXTRA_PARAMS}" | grep -qE -- "--userns[= ]keep-id" || return 0
+	echo "[INFO] With --userns=keep-id, Podman makes an ID-mapped copy of the image on the first start of each image version."
+	echo "[INFO] This can take several minutes without any progress output and needs about as much disk space as the image. Do not interrupt it."
+	echo "[HINT] CONTAINER_USER=0 CONTAINER_GROUP=0 avoids the copy, see README section 5.1."
+}
 # --- END common startup helpers ---
 
 # Select the container engine (Docker or Podman), can be overridden by
@@ -320,6 +328,7 @@ elif [ "$(${CONTAINER_ENGINE} ps -aq -f name="${CONTAINER_NAME}")" ]; then
 	fi
 else
 	[ -z "${IIC_OSIC_TOOLS_QUIET}" ] && echo "[INFO] Container does not exist, creating ${CONTAINER_NAME} ..."
+	keep_id_copy_notice
 	# Finally, run the container, and sets DISPLAY to the local display number
 	if ! ${ECHO_IF_DRY_RUN} "${CONTAINER_ENGINE}" pull "${IMAGE_NAME}" > /dev/null; then
 		echo "[ERROR] Failed to pull image ${IMAGE_NAME}."
