@@ -32,27 +32,21 @@ cp -R examples "${TOOLS}/${RFTK_NAME}"
 # -------------------------------------
 cd /tmp || exit 1
 git clone --filter=blob:none "${RFTK_FASTERCAP_REPO_URL}" "${RFTK_NAME}_fc"
-# get additional libs (LinAlgebra and Geometry)
-# The two libs are pinned to the commits that match the pinned FasterCap
-# revision. Last checked 2026-08-06: all three upstream repos are dormant and
-# their HEAD is exactly the commit pinned here, so nothing to update. Re-check
-# when bumping RFTK_FASTERCAP_REPO_COMMIT.
-git clone --filter=blob:none https://github.com/ediloren/LinAlgebra.git
+# get additional libs (LinAlgebra and Geometry), which CMake expects next to the
+# FasterCap directory. They come from the IIC-JKU forks too. FasterCap follows its
+# release tags, the libs follow their master branch, which is what the FasterCap
+# fork's CI builds against.
+git clone --filter=blob:none "${RFTK_LINALGEBRA_REPO_URL}" LinAlgebra
 cd LinAlgebra || exit 1
-git checkout 627132d70bfd7eadd727f930286938a5a01d9914
+git checkout "${RFTK_LINALGEBRA_REPO_COMMIT}"
 cd ..
-git clone --filter=blob:none https://github.com/ediloren/Geometry.git
+git clone --filter=blob:none "${RFTK_GEOMETRY_REPO_URL}" Geometry
 cd Geometry || exit 1
-git checkout de03ffebfd5013b96102bd60f71c8fe8b73870e2
+git checkout "${RFTK_GEOMETRY_REPO_COMMIT}"
 cd ..
 # now build FasterCap
 cd "${RFTK_NAME}_fc" || exit 1
 git checkout "${RFTK_FASTERCAP_REPO_COMMIT}"
-
-# patch FasterCap cmake (fix thanks to Ali Olyanasab) 
-sed -i '3 i add_definitions(-w)' CMakeLists.txt
-# patch FasterCap cmake for 24.04 LTS (thanks to ChatGPT)
-sed -i 's/--version=3\.0/--version=3\.2/' CMakeLists.txt
 
 mkdir build && cd build
 #cmake -G"CodeBlocks - Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
@@ -64,3 +58,5 @@ ln -s "${TOOLS}/${RFTK_NAME}/bin/FasterCap" "${TOOLS}/${RFTK_NAME}/bin/fastcap"
 
 echo "fasthenry ${RFTK_FASTHENRY_REPO_COMMIT}" > "${TOOLS}/${RFTK_NAME}/SOURCES"
 echo "fastercap ${RFTK_FASTERCAP_REPO_COMMIT}" >> "${TOOLS}/${RFTK_NAME}/SOURCES"
+echo "linalgebra ${RFTK_LINALGEBRA_REPO_COMMIT}" >> "${TOOLS}/${RFTK_NAME}/SOURCES"
+echo "geometry ${RFTK_GEOMETRY_REPO_COMMIT}" >> "${TOOLS}/${RFTK_NAME}/SOURCES"

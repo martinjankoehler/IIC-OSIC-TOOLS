@@ -5,6 +5,7 @@ This document summarizes the most important changes of the individual releases o
 ## 2026.11
 
 * [Update] `sak-drc.sh` runs `gdscheck` as a third DRC engine (`-g`), with the `-l` levels mapped onto its rule suites and `-s` to select a suite directly
+* [Update] FasterCap `6.1.1` (was `6.0.7`) from the [IIC-JKU fork](https://github.com/iic-jku/FasterCap), with BLAS-accelerated matrix products, a fixed hang of the `-pb` block preconditioner, and exit code 75 with the last iteration's result when `-a` does not converge (6.0.7 reported success with an unset matrix)
 * [Fix] `run_palace -np N` runs Palace on N MPI processes, where every N above 1 aborted with "mpirun does not support recursive calls"
 * [Fix] a login shell in `docker exec` sets `USER` to `designer` when the container UID has no passwd entry, instead of the two lines `1000` and `designer`
 * [Build] new regression tests 43 (`run_palace` with two MPI processes) and 44 (`USER` in a `docker exec` login shell)

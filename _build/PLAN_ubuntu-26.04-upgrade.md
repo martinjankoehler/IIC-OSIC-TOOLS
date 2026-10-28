@@ -249,7 +249,6 @@ still need it.
 | `_build/images/vacask/scripts/install.sh:18-43`, `:74` | drop the Boost source build and `-DBoost_ROOT`. **Keep** `BOOST_PROCESS_V2_DISABLE_PIDFD_OPEN` — a container/pidfd constraint, not a Boost-version workaround; re-verify the macro name against Boost 1.90 Process v2 |
 | `_build/images/base/scripts/30_install_boost.sh`, `34_install_spdlog.sh` + `base/Dockerfile:49,53` | both files are entirely commented out — delete the files and their Dockerfile lines |
 | `_build/images/base/scripts/31_install_or-tools.sh:25-31` | the comment says "system Boost 1.88" while the pins said 1.83 — correct to 1.90; keep the `rm` of the bundled Boost |
-| `_build/images/rftoolkit/scripts/install.sh:54-55` | re-check the FasterCap `--version=3.0`→`3.2` sed; resolute wx is still 3.2, so most likely keep and just retitle the comment |
 | `_build/images/base/scripts/80_install_apps.sh:97-98` | cosmetic — the "noble ships noVNC 1.3.0" rationale now refers to resolute |
 
 Rebuild `base`/`base-dev` after the or-tools and dead-file commits; the rest lands in Phase D.
