@@ -2,6 +2,10 @@
 
 This document summarizes the most important changes of the individual releases of the `IIC-OSIC-TOOLS` Docker container.
 
+## 2026.11
+
+* [Update] `sak-drc.sh` runs `gdscheck` as a third DRC engine (`-g`), with the `-l` levels mapped onto its rule suites and `-s` to select a suite directly
+
 ## 2026.10
 
 * [Adding] [`opencdc`](https://github.com/Ayoubbelguellaoui/CDC), a static clock domain crossing (CDC) checker for Verilog/SystemVerilog RTL
