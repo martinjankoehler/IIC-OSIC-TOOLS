@@ -10,7 +10,7 @@ cd /tmp || exit 1
 # supported build system. Bazel fetches a hermetic LLVM toolchain and all
 # dependencies (Qt, Tcl, Boost, SWIG, spdlog, ...) itself; bazelisk and the
 # few system libraries it links against come from base-dev.
-git clone --filter=blob:none "${OPENROAD_REPO_URL}" "${OPENROAD_NAME}"
+git clone --filter=blob:none --no-checkout "${OPENROAD_REPO_URL}" "${OPENROAD_NAME}"
 cd "${OPENROAD_NAME}" || exit 1
 git checkout "${OPENROAD_REPO_COMMIT}"
 git submodule update --init --recursive --filter=blob:none

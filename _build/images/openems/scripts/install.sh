@@ -12,7 +12,7 @@ set -e
 # apt -y install libhpdf-dev
 
 cd /tmp || exit 1
-git clone --filter=blob:none "$OPENEMS_REPO_URL" "$OPENEMS_NAME"
+git clone --filter=blob:none --no-checkout "$OPENEMS_REPO_URL" "$OPENEMS_NAME"
 cd "$OPENEMS_NAME"
 git checkout "$OPENEMS_REPO_COMMIT"
 git submodule update --init --recursive --filter=blob:none
