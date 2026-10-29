@@ -104,11 +104,17 @@
   repo: https://github.com/ra3xdh/qucs_s.git
   commit: 26.1.1
 - name: rftk-fastercap
-  repo: https://github.com/ediloren/FasterCap.git
-  commit: b42179a8fdd25ab42fe45527282b4a738d7e7f87
+  repo: https://github.com/iic-jku/FasterCap.git
+  commit: v6.1.1
 - name: rftk-fasthenry
   repo: https://github.com/ediloren/FastHenry2.git
   commit: 363e43ed57ad3b9affa11cba5a86624fad0edaa9
+- name: rftk-geometry
+  repo: https://github.com/iic-jku/Geometry.git
+  commit: d85b854c20c4089028c3da104c99bcfdfccad957
+- name: rftk-linalgebra
+  repo: https://github.com/iic-jku/LinAlgebra.git
+  commit: c240583108de50758eb9eaa561ad8b6a734f0e08
 - name: riscv-gnu-toolchain
   repo: https://github.com/riscv-collab/riscv-gnu-toolchain.git
   commit: 2026.10.26
