@@ -26,7 +26,7 @@ echo "[INFO] Installing prjtrellis"
 git clone --filter=blob:none "${PRJTRELLIS_REPO_URL}" prjtrellis
 cd prjtrellis || exit 1
 git checkout "${PRJTRELLIS_REPO_COMMIT}"
-git submodule update --init --recursive
+git submodule update --init --recursive --filter=blob:none
 cd libtrellis || exit 1
 cmake -DCMAKE_INSTALL_PREFIX="${TOOLS}/${FPGA_NAME}" .
 make -j"$(nproc)"
@@ -45,7 +45,7 @@ echo "[INFO] Installing nextpnr"
 git clone --filter=blob:none "${NEXTPNR_REPO_URL}" nextpnr
 cd nextpnr || exit 1
 git checkout "${NEXTPNR_REPO_COMMIT}"
-git submodule update --init --recursive
+git submodule update --init --recursive --filter=blob:none
 mkdir -p build && cd build || exit 1
 cmake ..    -DARCH="ice40;ecp5" \
             -DUSE_OPENMP=yes \

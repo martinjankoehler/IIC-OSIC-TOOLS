@@ -13,7 +13,7 @@ cd /tmp || exit 1
 git clone --filter=blob:none "${YOSYS_REPO_URL}" "${YOSYS_NAME}"
 cd "${YOSYS_NAME}" || exit 1
 git checkout "${YOSYS_REPO_COMMIT}"
-git submodule update --init
+git submodule update --init --filter=blob:none
 cmake -B build . --fresh \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="${TOOLS}/${YOSYS_NAME}" \

@@ -13,7 +13,7 @@ cd /tmp || exit 1
 git clone --filter=blob:none "${OPENROAD_REPO_URL}" "${OPENROAD_NAME}"
 cd "${OPENROAD_NAME}" || exit 1
 git checkout "${OPENROAD_REPO_COMMIT}"
-git submodule update --init --recursive
+git submodule update --init --recursive --filter=blob:none
 
 # Same flags as upstream etc/Build.sh: --config=release stamps the real
 # `git describe` version and includes --config=opt (-O3, ThinLTO).
